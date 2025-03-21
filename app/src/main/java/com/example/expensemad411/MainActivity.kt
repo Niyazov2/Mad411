@@ -1,6 +1,6 @@
 package com.example.expensemad411
 
-import ExpenseClass
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,26 +19,33 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
+
+        Log.d("MainActivityLifecycle", "onCreate called")
+
+
         val nameInput = findViewById<TextInputEditText>(R.id.ExpenseName)
         val amountInput = findViewById<TextInputEditText>(R.id.ExpenseAmount)
         val addButton = findViewById<Button>(R.id.addExpense)
         val recyclerView = findViewById<RecyclerView>(R.id.exView)
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        expenseAdapter = ExpAdapter(expenses) { position ->
 
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        expenseAdapter = ExpAdapter(expenses, { position ->
             expenses.removeAt(position)
             expenseAdapter.notifyItemRemoved(position)
-        }
+        }, { expense ->
+            val intent = Intent(this, ExpenseActivity::class.java)
+            intent.putExtra("expense_name", expense)
+            intent.putExtra("expense_amount", expense)
+            startActivity(intent)
+        })
         recyclerView.adapter = expenseAdapter
 
 
         addButton.setOnClickListener {
             val name = nameInput.text.toString().trim()
             val amountText = amountInput.text.toString().trim()
-
 
             if (name.isEmpty() || amountText.isEmpty()) {
                 Toast.makeText(this, "Please fill both fields", Toast.LENGTH_SHORT).show()
@@ -50,15 +58,18 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-
+            // Create new expense with date
             val newExpense = ExpenseClass(name, amount)
             expenses.add(newExpense)
             expenseAdapter.notifyItemInserted(expenses.size - 1)
+
             nameInput.text?.clear()
             amountInput.text?.clear()
         }
 
     }
+
+    // Lifecycle Logging
     override fun onStart() {
         super.onStart()
         Log.d("MainActivityLifecycle", "onStart called")
