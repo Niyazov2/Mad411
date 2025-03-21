@@ -2,6 +2,7 @@ package com.example.expensemad411
 
 import ExpenseClass
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     private val expenses = ArrayList<ExpenseClass>()
     private lateinit var expenseAdapter: ExpAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +44,6 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Convert the amount to a number
             val amount = amountText.toDoubleOrNull()
             if (amount == null) {
                 Toast.makeText(this, "Enter a valid amount", Toast.LENGTH_SHORT).show()
@@ -53,10 +54,33 @@ class MainActivity : AppCompatActivity() {
             val newExpense = ExpenseClass(name, amount)
             expenses.add(newExpense)
             expenseAdapter.notifyItemInserted(expenses.size - 1)
-
-            // Clear input fields
             nameInput.text?.clear()
             amountInput.text?.clear()
         }
+
+    }
+    override fun onStart() {
+        super.onStart()
+        Log.d("MainActivityLifecycle", "onStart called")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("MainActivityLifecycle", "onResume called")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("MainActivityLifecycle", "onPause called")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("MainActivityLifecycle", "onStop called")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("MainActivityLifecycle", "onDestroy called")
     }
 }
