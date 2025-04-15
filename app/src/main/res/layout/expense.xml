@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:ignore="MissingConstraints">
-    <LinearLayout
-        android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/textViewExpenseName"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="12dp"
-        android:gravity="center_vertical"
-        tools:ignore="MissingConstraints">
+        android:text="Expense Name"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/buttonDeleteExpense"
+        app:layout_constraintHorizontal_weight="1"/>
 
-        <TextView
-            android:id="@+id/ExpenseName"
-            android:layout_weight="2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Expense Name" />
+    <TextView
+        android:id="@+id/textViewExpenseAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$0.00"
+        app:layout_constraintTop_toBottomOf="@id/textViewExpenseName"
+        app:layout_constraintLeft_toLeftOf="parent"/>
 
-        <TextView
-            android:id="@+id/ExpenseAmount"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="$0.00" />
+    <TextView
+        android:id="@+id/textViewExpenseDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        app:layout_constraintTop_toBottomOf="@id/textViewExpenseName"
+        app:layout_constraintLeft_toRightOf="@id/textViewExpenseAmount"
+        android:layout_marginStart="16dp"/>
 
-        <Button
-            android:id="@+id/Delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Delete" />
-        <Button
-            android:id="@+id/Details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Details" />
-    </LinearLayout>
-
-
+    <Button
+        android:id="@+id/buttonDeleteExpense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
