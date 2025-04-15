@@ -5,20 +5,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Button
+import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 
 class ExpenAdapter(
     private val expenseList: MutableList<Expense>,
-    private val onDeleteClick: (Int) -> Unit,
-    private val onShowDetails: (Expense) -> Unit
+    private val listener: ExpenseItemListener
 ) : RecyclerView.Adapter<ExpenAdapter.ExpenseViewHolder>() {
 
-    class ExpenseViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val expenseNameText: TextView = itemView.findViewById(R.id.textViewExpenseName)
-        val expenseAmountText: TextView = itemView.findViewById(R.id.textViewExpenseAmount)
-        val expenseDateText: TextView = itemView.findViewById(R.id.textViewExpenseDate)
-        val deleteButton: Button = itemView.findViewById(R.id.buttonDeleteExpense)
-        val detailButton: Button = itemView.findViewById(R.id.buttonShowDetails)
+    interface ExpenseItemListener{
+        fun onEdit(expense: Expense)
+        fun onDelete(expense: Expense)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpenseViewHolder {
@@ -28,16 +25,24 @@ class ExpenAdapter(
 
     override fun onBindViewHolder(holder: ExpenseViewHolder, position: Int) {
         val expense = expenseList[position]
-        holder.expenseNameText.text = expense.name
-        holder.expenseAmountText.text = "$${expense.amount}"
-        holder.expenseDateText.text = expense.date
-        holder.deleteButton.setOnClickListener {
-            onDeleteClick(position)
-        }
-        holder.detailButton.setOnClickListener {
-            onShowDetails(expense)
-        }
+        holder.bind(expense)
     }
 
     override fun getItemCount(): Int = expenseList.size
+
+    inner class ExpenseViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+        private val expenseNameText: TextView = itemView.findViewById(R.id.expenseNameTextView)
+        private val expenseAmountText: TextView = itemView.findViewById(R.id.expenseAmountTextView)
+        private val expenseDateText: TextView = itemView.findViewById(R.id.expenseDateTextView)
+        private val editButton: Button = itemView.findViewById(R.id.editButton)
+        private val deleteButton: Button = itemView.findViewById(R.id.deleteButton)
+
+        fun bind(expense: Expense) {
+            expenseNameText.text = expense.name
+            expenseAmountText.text = "$${expense.amount}"
+            expenseDateText.text = expense.date
+            editButton.setOnClickListener { listener.onEdit(expense) }
+            deleteButton.setOnClickListener { listener.onDelete(expense) }
+        }
+    }
 }
