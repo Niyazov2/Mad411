@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         expensesRecyclerView.layoutManager = LinearLayoutManager(this)
         expensesRecyclerView.adapter = expenseAdapter
 
-        // Set up a DatePicker for the date input
+        // DatePicker
         dateInput.setOnClickListener {
             val calendar = Calendar.getInstance()
             DatePickerDialog(this, { _, year, month, day ->
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
         }
 
-        // Add Expense button click listener
+        // Add Expense button
         addExpenseButton.setOnClickListener {
             addExpense(expenseNameInput, amountInput, dateInput)
         }
@@ -125,7 +125,7 @@ class MainActivity : AppCompatActivity() {
         footerFragment.updateTotal(total)
     }
 
-    // Lifecycle methods with logging
+    // Lifecycle methods
     override fun onStart() {
         super.onStart()
         Log.d("MainActivity", "onStart called")
@@ -146,4 +146,4 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         Log.d("MainActivity", "onDestroy called")
     }
-}}
+}
