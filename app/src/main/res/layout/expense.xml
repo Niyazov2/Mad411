@@ -13,9 +13,8 @@
         android:text="Expense Name"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/buttonDeleteExpense"
-        app:layout_constraintHorizontal_weight="1"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/textViewExpenseAmount"
@@ -23,7 +22,8 @@
         android:layout_height="wrap_content"
         android:text="$0.00"
         app:layout_constraintTop_toBottomOf="@id/textViewExpenseName"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"/>
 
     <TextView
         android:id="@+id/textViewExpenseDate"
@@ -31,14 +31,30 @@
         android:layout_height="wrap_content"
         android:text="Date"
         app:layout_constraintTop_toBottomOf="@id/textViewExpenseName"
-        app:layout_constraintLeft_toRightOf="@id/textViewExpenseAmount"
-        android:layout_marginStart="16dp"/>
+        app:layout_constraintStart_toEndOf="@id/textViewExpenseAmount"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"/>
 
     <Button
         android:id="@+id/buttonDeleteExpense"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Delete"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/textViewExpenseAmount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/buttonShowDetails"
+        app:layout_constraintHorizontal_weight="1"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/buttonShowDetails"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Show Details"
+        app:layout_constraintTop_toBottomOf="@id/textViewExpenseAmount"
+        app:layout_constraintStart_toEndOf="@id/buttonDeleteExpense"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        android:layout_marginTop="16dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
