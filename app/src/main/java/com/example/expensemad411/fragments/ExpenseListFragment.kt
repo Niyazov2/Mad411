@@ -75,12 +75,11 @@ class ExpenseListFragment : Fragment(), ExpenAdapter.ExpenseItemListener {
             ?.getLiveData<Bundle>("newExpense")
             ?.observe(viewLifecycleOwner) { bundle ->
                 val updatedExpense = Expense(
-                    bundle.getInt("expenseId").toString(),
-                    bundle.getString("expenseName", ""),
+                    bundle.getString("expenseName",""),
                     bundle.getDouble("expenseAmount", 0.0),
                     bundle.getString("expenseDate", "")
                 )
-                val index = expenseList.indexOfFirst { it.id == updatedExpense.id }
+                val index = bundle.getInt("expenseIndex", -1)
                 if (index != -1) {
                     expenseList[index] = updatedExpense
                     expenseAdapter.notifyItemChanged(index)

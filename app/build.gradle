@@ -33,7 +33,8 @@ android {
 }
 
 dependencies {
-
+    implementation(libs.converter.gson)
+    implementation(libs.retrofit)
     implementation(libs.material.v1120)
     implementation(libs.gson)
     implementation(libs.androidx.core.ktx)

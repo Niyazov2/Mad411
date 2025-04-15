@@ -4,6 +4,6 @@ data class Expense(
     val name: String,
     val amount: Double,
     val date: String,
-    val currency: String = "CAD"
-    val converted
+    val currency: String = "CAD",
+    val convertedCost: Double = 0.0
 )

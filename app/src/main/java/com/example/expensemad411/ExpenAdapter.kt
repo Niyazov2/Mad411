@@ -19,7 +19,6 @@ class ExpenAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpenseViewHolder {
-        // Inflate the expense.xml layout
         val view = LayoutInflater.from(parent.context).inflate(R.layout.expense, parent, false)
         return ExpenseViewHolder(view)
     }
