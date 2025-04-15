@@ -47,9 +47,11 @@ class ExpenseListFragment : Fragment(), ExpenAdapter.ExpenseItemListener {
         return view
     }
 
-    override fun onEditClick(expense: Expense) {
+    // Updated method name to match the interface method in the adapter
+    override fun onEdit(expense: Expense) {
+        val index = expenseList.indexOf(expense)
         val bundle = Bundle().apply {
-            putInt("expenseId", expense.id)
+            putInt("expenseIndex", index)
             putString("expenseName", expense.name)
             putDouble("expenseAmount", expense.amount)
             putString("expenseDate", expense.date)
@@ -57,7 +59,8 @@ class ExpenseListFragment : Fragment(), ExpenAdapter.ExpenseItemListener {
         findNavController().navigate(R.id.addExpense, bundle)
     }
 
-    override fun onDeleteClick(expense: Expense) {
+    // Updated method name to match the interface method in the adapter
+    override fun onDelete(expense: Expense) {
         expenseList.remove(expense)
         expenseAdapter.notifyDataSetChanged()
         saveExpensesToFile(requireContext(), expenseList)
@@ -65,10 +68,11 @@ class ExpenseListFragment : Fragment(), ExpenAdapter.ExpenseItemListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Bundle>("newExpense")
+        findNavController().currentBackStackEntry?.savedStateHandle
+            ?.getLiveData<Bundle>("newExpense")
             ?.observe(viewLifecycleOwner) { bundle ->
                 val updatedExpense = Expense(
-                    bundle.getInt("expenseId"),
+                    bundle.getInt("expenseId").toString(),
                     bundle.getString("expenseName", ""),
                     bundle.getDouble("expenseAmount", 0.0),
                     bundle.getString("expenseDate", "")

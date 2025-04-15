@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Button
-import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 
 class ExpenAdapter(
@@ -19,6 +18,7 @@ class ExpenAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpenseViewHolder {
+        // Inflate the expense.xml layout
         val view = LayoutInflater.from(parent.context).inflate(R.layout.expense, parent, false)
         return ExpenseViewHolder(view)
     }
@@ -30,7 +30,7 @@ class ExpenAdapter(
 
     override fun getItemCount(): Int = expenseList.size
 
-    inner class ExpenseViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    inner class ExpenseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val expenseNameText: TextView = itemView.findViewById(R.id.expenseNameTextView)
         private val expenseAmountText: TextView = itemView.findViewById(R.id.expenseAmountTextView)
         private val expenseDateText: TextView = itemView.findViewById(R.id.expenseDateTextView)

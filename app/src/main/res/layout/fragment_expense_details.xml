@@ -3,53 +3,41 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/expenseNameTextView"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Expense Name"
-        android:textStyle="bold"
+        android:text="Name: "
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/expenseAmountTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="$0.00"
+        android:text="Amount: "
         app:layout_constraintTop_toBottomOf="@id/expenseNameTextView"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="16dp"/>
 
     <TextView
         android:id="@+id/expenseDateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Date"
-        app:layout_constraintTop_toBottomOf="@id/expenseNameTextView"
-        app:layout_constraintStart_toEndOf="@id/expenseAmountTextView"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"/>
-
-    <Button
-        android:id="@+id/editButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Edit"
+        android:text="Date: "
         app:layout_constraintTop_toBottomOf="@id/expenseAmountTextView"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="16dp"/>
 
     <Button
-        android:id="@+id/deleteButton"
+        android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delete"
-        app:layout_constraintTop_toBottomOf="@id/expenseAmountTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:text="Back"
+        app:layout_constraintTop_toBottomOf="@id/expenseDateTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
