@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
+import com.example.expensemad411.models.Expense
 
 class ExpenAdapter(
     private val expenseList: MutableList<Expense>,

@@ -1,4 +1,4 @@
-package com.example.expensemad411
+package com.example.expensemad411.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -10,6 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.expensemad411.ExpenAdapter
+import com.example.expensemad411.models.Expense
+import com.example.expensemad411.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

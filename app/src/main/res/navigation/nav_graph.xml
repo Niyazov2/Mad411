@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/expenseListFragment"
-        android:name="com.example.expensemad411.ExpenseListFragment"
+        android:name="com.example.expensemad411.fragments.ExpenseListFragment"
         android:label="Expense List">
         <action
             android:id="@+id/addExpense"
@@ -19,12 +19,12 @@
 
     <fragment
         android:id="@+id/addExpenseFragment"
-        android:name="com.example.expensemad411.AddExpenseFragment"
+        android:name="com.example.expensemad411.fragments.AddExpenseFragment"
         android:label="Add/Edit Expense" />
 
     <fragment
         android:id="@+id/expenseDetailsFragment"
-        android:name="com.example.expensemad411.ExpenseDetailsFragment"
+        android:name="com.example.expensemad411.fragments.ExpenseDetailsFragment"
         android:label="Expense Details">
         <argument
             android:name="expenseName"

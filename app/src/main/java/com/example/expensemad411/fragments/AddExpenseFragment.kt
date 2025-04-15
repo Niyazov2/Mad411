@@ -1,4 +1,4 @@
-package com.example.expensemad411
+package com.example.expensemad411.fragments
 
 import android.app.DatePickerDialog
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.expensemad411.R
 import java.util.Calendar
 import java.util.Locale
 
@@ -65,7 +66,13 @@ class AddExpenseFragment : Fragment() {
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
         DatePickerDialog(requireContext(), { _, selectedYear, selectedMonth, selectedDay ->
-            val formattedDate = String.format(Locale.getDefault(), "%02d/%02d/%04d", selectedDay, selectedMonth + 1, selectedYear)
+            val formattedDate = String.Companion.format(
+                Locale.getDefault(),
+                "%02d/%02d/%04d",
+                selectedDay,
+                selectedMonth + 1,
+                selectedYear
+            )
             expenseDateEditText.setText(formattedDate)
         }, year, month, day).show()
     }
